@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="card card-w100">
+      <h2>Генератор резюме</h2>
+    </div>
+    <div class="container column">
+      <LeftBlock 
+        @add-data="onAddData" />
+      <RightBlock 
+        :blocks="blocks" />
+    </div>
+    <Comments />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import LeftBlock from './LeftBlock.vue'
+import RightBlock from './RightBlock.vue'
+import Comments from "./Comments.vue"
 export default {
-  name: 'App',
+  data() {
+    return {
+      blocks: []
+    }
+  },
+  methods: {
+    onAddData(block) {
+      this.blocks.push(block);
+    }
+  },
   components: {
-    HelloWorld
+    LeftBlock: LeftBlock,
+    RightBlock: RightBlock,
+    Comments: Comments
   }
 }
 </script>
+    
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .avatar {
+    display: flex;
+    justify-content: center;
+  }
+
+  .avatar img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+  }
 </style>
